@@ -18,7 +18,7 @@ router.put('/signup',[
                 })
         })
         .normalizeEmail(), 
-    body('password').trim().isLength({min:5}).withMessage('Please enter a password!'),  
+    body('password').trim().isLength({min:4}).withMessage('Please enter a password!'),  
     body('name').trim().not().isEmpty().withMessage('Please enter a valid name!')  
 ],authController.signup);
 

@@ -7,10 +7,14 @@ const User = require('../models/user');
 
 exports.getTodos = async (req, res, next) => {
    const currentPage = req.query.page || 1;
-   const perPage = 2;
+   const perPage = 3;
    try{
-      let totalItems = await Todo.find().countDocuments();
-      const todos = await Todo.find().populate('creator').skip((currentPage - 1) * perPage).limit(perPage);
+      let totalItems = await Todo.find({creator: req.userId}).countDocuments();
+      const todos = await Todo.find({ creator: req.userId })
+      .populate('creator')
+      .sort({ createdAt: -1 }) // Sort by createdAt field in descending order
+      .skip((currentPage - 1) * perPage)
+      .limit(perPage); 
       res.status(200)
          .json({
                message: 'Fetched todos successfully.',
