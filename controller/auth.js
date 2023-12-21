@@ -1,5 +1,5 @@
 require('dotenv').config();
-const jwtSecret=process.env.JWT_Secret;
+const jwtSecret=process.env.JWT_Secret;  
 // Importing necessary modules and packages
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');

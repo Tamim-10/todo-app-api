@@ -18,7 +18,12 @@ router.put('/signup',[
                 })
         })
         .normalizeEmail(), 
-    body('password').trim().isLength({min:4}).withMessage('Please enter a password!'),  
+    body('password')
+        .trim(),
+        // .isLength({ min: 8 }),
+        // .withMessage('Password must be at least 8 characters long.')
+        // .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)
+        // .withMessage('Password must be at least 8 characters long.'),  
     body('name').trim().not().isEmpty().withMessage('Please enter a valid name!')  
 ],authController.signup);
 
